@@ -110,8 +110,35 @@ a:hover {
 /* H5P container sizing: allow responsive width & auto height */
 .h5p-container {  
   width: 100%;  
-  max-width: 640px;  
+  max-width: 960px;  
   margin: 0 auto;  
+  box-sizing: border-box;  
+}
+
+/* Force H5P inner iframe / content to expand to container width */
+.h5p-container iframe,
+.h5p-container .h5p-iframe,
+.h5p-container .h5p-embed,
+.h5p-container .h5p-content,
+.h5p-container .h5p-activity {  
+  width: 100% !important;  
+  max-width: 100% !important;  
+  box-sizing: border-box !important;  
+}
+
+/* Make sure full-width media inside H5P scales down */
+.h5p-container img, .h5p-container video {  
+  max-width: 100% !important;  
+  height: auto !important;  
+}
+
+/* On very large screens, allow slightly wider player */
+@media (min-width: 1400px) {  
+  .h5p-container { max-width: 1100px; }  
+}
+
+@media (max-width: 680px) {  
+  .h5p-container { max-width: 100%; padding-left: .5rem; padding-right: .5rem; }
 }
 
 .site-nav {  

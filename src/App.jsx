@@ -3,12 +3,11 @@ import H5PPlayer from './components/H5PPlayer';
 import './App.css';
 
 const H5P_ACTIVITIES = [
-  {
+    {
     slug: 'my-interactive',
     title: 'Blackcurrant Quiz',
     summary: 'Simple multiple choice question rendered from local H5P package.'
   }
-  // Add more objects here { slug: 'another', title: 'Title', summary: '...' }
 ];
 
 function ThemeToggle({ theme, onToggle }) {
@@ -82,7 +81,7 @@ export default function App() {
           <h2 className="section-title">Key Characteristics</h2>
           <div className="grid">
             <div className="feature"><h3>Local Assets</h3><p>No runtime CDN dependency; reproducible builds.</p></div>
-            <div className="feature"><h3>Caching Strategy</h3><p>Immutable player bundles & short‑lived content.</p></div>
+            <div className="feature"><h3>Caching Strategy</h3><p>Immutable player bundles & short-lived content.</p></div>
             <div className="feature"><h3>Extensible</h3><p>Add more H5P packages by dropping folders into <code>/public/h5p</code>.</p></div>
             <div className="feature"><h3>Theme Toggle</h3><p>Accessible light/dark mode with local persistence.</p></div>
           </div>
