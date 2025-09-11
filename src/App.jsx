@@ -1,24 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import H5PPlayer from './components/H5PPlayer';
 import './App.css';
-
-const H5P_ACTIVITIES = [
-    {
-    slug: 'my-interactive',
-    title: 'Blackcurrant Quiz',
-    summary: 'Simple multiple choice question rendered from local H5P package.'
-  },
-  {
-    slug: 'fill-in-the-blanks',
-    title: 'Fill in the Blanks',
-    summary: 'Interactive fill-in-the-blanks activity rendered from local H5P package.'
-  },
-  {
-    slug: 'animal-world',
-    title: 'Animal World',
-    summary: 'Explore the fascinating world of animals with this interactive activity.'
-  }
-];
+import { H5P_ACTIVITIES, H5P_CONTENT_BASE } from './config/h5pActivities';
 
 function ThemeToggle({ theme, onToggle }) {
   return (
@@ -33,34 +16,12 @@ function ThemeToggle({ theme, onToggle }) {
   );
 }
 
-function ActivitySelector({ current, onChange }) {
-  return (
-    <div className="activity-select">
-      <label htmlFor="activity" className="activity-label">Select Activity:</label>
-      <select
-        id="activity"
-        value={current}
-        onChange={(e) => onChange(e.target.value)}
-        className="activity-dropdown"
-      >
-        {H5P_ACTIVITIES.map(a => (
-          <option key={a.slug} value={a.slug}>{a.title}</option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('demo-theme') || 'dark');
-  const [activity, setActivity] = useState(H5P_ACTIVITIES[0].slug);
-
   useEffect(() => {
     document.body.classList.toggle('theme-light', theme === 'light');
     localStorage.setItem('demo-theme', theme);
   }, [theme]);
-
-  const selected = H5P_ACTIVITIES.find(a => a.slug === activity);
 
   return (
     <>
@@ -97,30 +58,15 @@ export default function App() {
           </div>
         </section>
 
-        <section id="activity" className="h5p-wrapper" aria-labelledby="activity-heading">
-          <div className="h5p-header-row">
-            <h2 id="activity-heading">Interactive Activity</h2>
-            <ActivitySelector current={activity} onChange={setActivity} />
-          </div>
-          <p className="activity-summary">{selected?.summary}</p>
-          <H5PPlayer h5pPath={`/h5p/${activity}`} />
-        </section>
-
-        <section id="fill-in-the-blanks" className="h5p-wrapper" aria-labelledby="fill-in-the-blanks-heading">
-          <div className="h5p-header-row">
-            <h2 id="fill-in-the-blanks-heading">Fill in the Blanks</h2>
-            <p className="activity-summary">Interactive fill-in-the-blanks activity rendered from local H5P package.</p>
-          </div>
-          <H5PPlayer h5pPath="/h5p/fill-in-the-blanks" />
-        </section>
-
-        <section id="animal-world" className="h5p-wrapper" aria-labelledby="animal-world-heading">
-          <div className="h5p-header-row">
-            <h2 id="animal-world-heading">Animal World</h2>
-            <p className="activity-summary">Explore the fascinating world of animals with this interactive activity.</p>
-          </div>
-          <H5PPlayer h5pPath="/h5p/animal-world" />
-        </section>
+        {H5P_ACTIVITIES.map(activity => (
+          <section key={activity.slug} id={activity.slug} className="h5p-wrapper" aria-labelledby={`${activity.slug}-heading`}>
+            <div className="h5p-header-row">
+              <h2 id={`${activity.slug}-heading`}>{activity.title}</h2>
+              <p className="activity-summary">{activity.summary}</p>
+            </div>
+            <H5PPlayer h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`} />
+          </section>
+        ))}
 
         <section id="about" className="about">
           <h2 className="section-title">About This Demo</h2>
