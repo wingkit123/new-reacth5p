@@ -1,6 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { ensureH5PGlobals } from "../utils/h5pLoader";
 
+// Helper function for logging
+const logDebug = (debug, ...messages) => {
+  if (debug) console.log(...messages);
+};
+
 export default function H5PPlayer({
   h5pPath = "/h5p/my-interactive",
   playerBase = "/assets/h5p-player",
@@ -16,7 +21,7 @@ export default function H5PPlayer({
     (async () => {
       const currentPath = h5pPath;
       pathRef.current = currentPath;
-  if (debug) console.log("[H5PPlayer] Mounting content from", currentPath);
+      logDebug(debug, "[H5PPlayer] Mounting content from", currentPath);
 
       // Quick existence check for h5p.json to surface 404 early
       try {
@@ -56,15 +61,15 @@ export default function H5PPlayer({
         }
 
         const options = { h5pJsonPath: currentPath, frameJs: frameBundle, frameCss };
-        if (debug) console.log("[H5PPlayer] Initializing with options", options);
+        logDebug(debug, "[H5PPlayer] Initializing with options", options);
 
         try {
           new Constructor(containerRef.current, options);
-          if (debug) console.log("[H5PPlayer] Initialized content for", currentPath);
+          logDebug(debug, "[H5PPlayer] Initialized content for", currentPath);
         } catch (err) {
           if (window.H5P && typeof window.H5P.init === 'function') {
             window.H5P.init(containerRef.current);
-            if (debug) console.log('[H5PPlayer] Fallback window.H5P.init used for', currentPath);
+            logDebug(debug, '[H5PPlayer] Fallback window.H5P.init used for', currentPath);
           } else {
             console.error('[H5PPlayer] init error:', err);
           }
@@ -77,11 +82,11 @@ export default function H5PPlayer({
             containerRef.current &&
             containerRef.current.innerHTML.trim() === ""
           ) {
-      if (debug) console.warn("[H5PPlayer] Container still empty after initialization. Check console/network for errors.");
+            logDebug(debug, "[H5PPlayer] Container still empty after initialization. Check console/network for errors.");
           }
         }, 300);
       } catch (err) {
-    if (!cancelled) console.error("[H5PPlayer] unexpected error:", err);
+        if (!cancelled) console.error("[H5PPlayer] unexpected error:", err);
       }
     })();
     return () => {
@@ -90,7 +95,7 @@ export default function H5PPlayer({
   }, [h5pPath, playerBase, retryCount, retryInterval, debug]);
 
   return (
-    <div style={{ width: "100%" }} key={h5pPath}>
+    <div className="h5p-wrapper" key={h5pPath}>
       <div ref={containerRef} className="h5p-container" />
     </div>
   );
