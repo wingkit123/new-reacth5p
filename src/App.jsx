@@ -12,6 +12,11 @@ const H5P_ACTIVITIES = [
     slug: 'fill-in-the-blanks',
     title: 'Fill in the Blanks',
     summary: 'Interactive fill-in-the-blanks activity rendered from local H5P package.'
+  },
+  {
+    slug: 'animal-world',
+    title: 'Animal World',
+    summary: 'Explore the fascinating world of animals with this interactive activity.'
   }
 ];
 
@@ -107,6 +112,14 @@ export default function App() {
             <p className="activity-summary">Interactive fill-in-the-blanks activity rendered from local H5P package.</p>
           </div>
           <H5PPlayer h5pPath="/h5p/fill-in-the-blanks" />
+        </section>
+
+        <section id="animal-world" className="h5p-wrapper" aria-labelledby="animal-world-heading">
+          <div className="h5p-header-row">
+            <h2 id="animal-world-heading">Animal World</h2>
+            <p className="activity-summary">Explore the fascinating world of animals with this interactive activity.</p>
+          </div>
+          <H5PPlayer h5pPath="/h5p/animal-world" />
         </section>
 
         <section id="about" className="about">
