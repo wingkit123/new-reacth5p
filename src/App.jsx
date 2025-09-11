@@ -7,6 +7,11 @@ const H5P_ACTIVITIES = [
     slug: 'my-interactive',
     title: 'Blackcurrant Quiz',
     summary: 'Simple multiple choice question rendered from local H5P package.'
+  },
+  {
+    slug: 'fill-in-the-blanks',
+    title: 'Fill in the Blanks',
+    summary: 'Interactive fill-in-the-blanks activity rendered from local H5P package.'
   }
 ];
 
@@ -94,6 +99,14 @@ export default function App() {
           </div>
           <p className="activity-summary">{selected?.summary}</p>
           <H5PPlayer h5pPath={`/h5p/${activity}`} />
+        </section>
+
+        <section id="fill-in-the-blanks" className="h5p-wrapper" aria-labelledby="fill-in-the-blanks-heading">
+          <div className="h5p-header-row">
+            <h2 id="fill-in-the-blanks-heading">Fill in the Blanks</h2>
+            <p className="activity-summary">Interactive fill-in-the-blanks activity rendered from local H5P package.</p>
+          </div>
+          <H5PPlayer h5pPath="/h5p/fill-in-the-blanks" />
         </section>
 
         <section id="about" className="about">
