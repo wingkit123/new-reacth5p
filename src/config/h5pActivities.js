@@ -14,6 +14,11 @@ export const H5P_ACTIVITIES = [
     slug: 'animal-world',
     title: 'Animal World',
     summary: 'Explore the fascinating world of animals with this interactive activity.'
+  },
+  {
+    slug: 'answer-the-question',
+    title: 'Answer the Question',
+    summary: 'Interactive activity to answer questions rendered from local H5P package.'
   }
 ];
 

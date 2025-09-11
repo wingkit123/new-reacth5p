@@ -63,6 +63,7 @@ export default function App() {
             <div className="h5p-header-row">
               <h2 id={`${activity.slug}-heading`}>{activity.title}</h2>
               <p className="activity-summary">{activity.summary}</p>
+              
             </div>
             <H5PPlayer h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`} />
           </section>
