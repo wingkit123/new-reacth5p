@@ -59,7 +59,7 @@ export default function App() {
         </section>
 
         {H5P_ACTIVITIES.map(activity => (
-          <section key={activity.slug} id={activity.slug} className="h5p-wrapper" aria-labelledby={`${activity.slug}-heading`}>
+          <section key={activity.slug} id={activity.slug} className="h5p-wrapper full-bleed" aria-labelledby={`${activity.slug}-heading`}>
             <div className="h5p-header-row">
               <h2 id={`${activity.slug}-heading`}>{activity.title}</h2>
               <p className="activity-summary">{activity.summary}</p>
