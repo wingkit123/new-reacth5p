@@ -69,6 +69,7 @@ export default function App() {
             <H5PPlayer
               h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`}
               embedType={activity.embedType || 'iframe'}
+              debug={activity.debug || false}
             />
           </section>
         ))}
