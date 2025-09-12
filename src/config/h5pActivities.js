@@ -15,10 +15,15 @@ export const H5P_ACTIVITIES = [
     title: 'Animal World',
     summary: 'Explore the fascinating world of animals with this interactive activity.'
   },
-  {
+	{
     slug: 'answer-the-question',
     title: 'Answer the Question',
     summary: 'Interactive activity to answer questions rendered from local H5P package.'
+  },
+  {
+    slug: 'koha',
+    title: 'Estate Planning Awareness – Conventional & Islamic (Malaysia)',
+    summary: 'Interactive book on estate planning awareness for Malaysia, covering both conventional and Islamic perspectives.'
   }
 ];
 
