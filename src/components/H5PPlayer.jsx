@@ -56,13 +56,15 @@ export default function H5PPlayer({
           return;
         }
 
-        const Constructor = window.H5PStandalone?.H5P || window.H5P;
+        const Constructor = window.H5PStandalone?.H5P;
         if (!Constructor) {
           console.error('[H5PPlayer] H5P constructor missing');
           return;
         }
 
-  const options = { h5pJsonPath: currentPath, frameJs: frameBundle, frameCss, embedType };
+        // Always pass embedType to override inconsistent h5p.json values.
+        // Koha content lists 'div' in h5p.json but library requires 'iframe'.
+        const options = { h5pJsonPath: currentPath, frameJs: frameBundle, frameCss, embedType };
         logDebug(debug, "[H5PPlayer] Initializing with options", options);
 
         try {
