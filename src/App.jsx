@@ -73,8 +73,9 @@ export default function App() {
           <h2 className="section-title">About This Demo</h2>
           <p>
             The <code>H5PPlayer</code> component loads assets from <code>/assets/h5p-player</code> (copied at install via
-            a <code>postinstall</code> script). Add additional H5P content by exporting from Lumi and extracting into
-            <code>public/h5p/&lt;slug&gt;</code>. Then append an entry to the <code>H5P_ACTIVITIES</code> array in <code>App.jsx</code>.
+            a <code>postinstall</code> script). Add additional H5P content by exporting from <code>Lumi</code> and extracting into
+            <code>public/h5p/&lt;slug&gt;</code>. Then append an entry to the <code>H5P_ACTIVITIES</code> array in
+            <code> src/config/h5pActivities.js</code>.
           </p>
         </section>
 
