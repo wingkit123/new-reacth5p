@@ -1,6 +1,11 @@
 // Central definition of H5P activities
 export const H5P_ACTIVITIES = [
   {
+    slug: 'koha',
+    title: 'Estate Planning Awareness – Conventional & Islamic (Malaysia)',
+    summary: 'Interactive book on estate planning awareness for Malaysia, covering both conventional and Islamic perspectives.'
+  },
+  {
     slug: 'my-interactive',
     title: 'Blackcurrant Quiz',
     summary: 'Simple multiple choice question rendered from local H5P package.'
@@ -19,11 +24,6 @@ export const H5P_ACTIVITIES = [
     slug: 'answer-the-question',
     title: 'Answer the Question',
     summary: 'Interactive activity to answer questions rendered from local H5P package.'
-  },
-  {
-    slug: 'koha',
-    title: 'Estate Planning Awareness – Conventional & Islamic (Malaysia)',
-    summary: 'Interactive book on estate planning awareness for Malaysia, covering both conventional and Islamic perspectives.'
   }
 ];
 

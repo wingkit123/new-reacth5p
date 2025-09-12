@@ -29,6 +29,7 @@ export default function App() {
       <nav className="site-nav" aria-label="Main navigation">
         <div className="brand">H5P Demo</div>
         <ul>
+          <li><a href="#koha">Koha</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#activity">Activity</a></li>
           <li><a href="#about">About</a></li>
