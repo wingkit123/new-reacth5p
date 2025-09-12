@@ -66,7 +66,10 @@ export default function App() {
               <p className="activity-summary">{activity.summary}</p>
               
             </div>
-            <H5PPlayer h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`} />
+            <H5PPlayer
+              h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`}
+              embedType={activity.embedType || 'iframe'}
+            />
           </section>
         ))}
 

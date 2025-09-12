@@ -9,6 +9,8 @@ const logDebug = (debug, ...messages) => {
 export default function H5PPlayer({
   h5pPath = "/h5p/my-interactive",
   playerBase = "/assets/h5p-player",
+  // iframe is the default in h5p-standalone; allow override for content that may render better in div mode
+  embedType = "iframe",
   retryCount = 40,
   retryInterval = 200,
   debug = false,
@@ -60,7 +62,7 @@ export default function H5PPlayer({
           return;
         }
 
-        const options = { h5pJsonPath: currentPath, frameJs: frameBundle, frameCss };
+  const options = { h5pJsonPath: currentPath, frameJs: frameBundle, frameCss, embedType };
         logDebug(debug, "[H5PPlayer] Initializing with options", options);
 
         try {
@@ -92,7 +94,7 @@ export default function H5PPlayer({
     return () => {
       cancelled = true;
     };
-  }, [h5pPath, playerBase, retryCount, retryInterval, debug]);
+  }, [h5pPath, playerBase, embedType, retryCount, retryInterval, debug]);
 
   return (
     <div className="h5p-wrapper" key={h5pPath}>
