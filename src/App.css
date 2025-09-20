@@ -1,3 +1,20 @@
+/* Fullscreen button styling */
+.fullscreen-btn {
+  background: #2f3239;
+  color: #d9e2ec;
+  border: 1px solid #3c4149;
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  font-size: .85rem;
+  letter-spacing: .5px;
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: background 0.2s;
+}
+.fullscreen-btn:hover {
+  background: #3a3f46;
+  color: #fff;
+}
 /* Demo/Extras section visually secondary */
 #demo-extras {
   margin: 48px auto 0 auto;

@@ -1,13 +1,37 @@
-# React + Vite
+# React H5P Player (Vite + React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Locally hosts H5P content and renders it via the h5p-standalone runtime in a React + Vite SPA. Includes xAPI progress tracking with `localStorage`, a simple UI badge, and Netlify-ready caching and SPA routing.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 18+ and npm
 
-## Expanding the ESLint configuration
+## Install, Run, Build
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# new-reacth5p" 
+- Install: `npm install`
+- Dev: `npm run dev`
+- Lint: `npm run lint`
+- Build: `npm run build` (copies `h5p-standalone` runtime into `public/assets/h5p-player` via postinstall)
+- Preview: `npm run preview`
+
+## H5P Content
+
+- Place H5P packages under `public/h5p/<slug>` with a valid `h5p.json`.
+- Configure visible activities in `src/config/h5pActivities.js` (slug, title, summary, optional `embedType: 'iframe' | 'div'`).
+- The player runtime is served from `public/assets/h5p-player`.
+
+## xAPI Tracking
+
+- `useXapiTracker` hook listens for H5P xAPI statements and persists coarse progress in `localStorage`.
+- UI components display a progress badge per activity.
+
+## Netlify Deployment
+
+- SPA routing: `public/_redirects` → `/* /index.html 200` (bundled into `dist/_redirects`).
+- Caching headers: `public/_headers` sets immutable cache for player assets and shorter cache for `/h5p/*` content.
+- Deploy the `dist/` folder.
+
+## Notes
+
+- Some complex H5P types render more reliably with `embedType: 'iframe'`.
+- If you replace large media, prefer optimized assets. Git LFS is recommended for very large binaries.

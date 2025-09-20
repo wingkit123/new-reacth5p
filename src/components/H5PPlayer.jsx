@@ -14,8 +14,11 @@ export default function H5PPlayer({
   retryCount = 40,
   retryInterval = 200,
   debug = false,
+  containerRef: externalContainerRef,
 }) {
-  const containerRef = useRef(null);
+  // Always call useRef, then assign to external if provided
+  const internalRef = useRef(null);
+  const containerRef = externalContainerRef || internalRef;
   const pathRef = useRef(h5pPath);
 
   useEffect(() => {
@@ -96,7 +99,7 @@ export default function H5PPlayer({
     return () => {
       cancelled = true;
     };
-  }, [h5pPath, playerBase, embedType, retryCount, retryInterval, debug]);
+  }, [h5pPath, playerBase, embedType, retryCount, retryInterval, debug, containerRef]);
 
   return (
     <div className="h5p-wrapper" key={h5pPath}>
