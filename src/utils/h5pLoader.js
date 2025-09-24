@@ -28,8 +28,9 @@ let h5pGlobalPromise;
 export async function ensureH5PGlobals({ playerBase, retryCount = 40, retryInterval = 200 }) {
   if (h5pGlobalPromise) return h5pGlobalPromise;
   h5pGlobalPromise = (async () => {
-    const frameCss = `${playerBase}/styles/h5p.css`;
-    const mainBundle = `${playerBase}/main.bundle.js`;
+    const ver = (import.meta && import.meta.env && import.meta.env.VITE_H5P_ASSET_VERSION) ? `?v=${import.meta.env.VITE_H5P_ASSET_VERSION}` : '';
+    const frameCss = `${playerBase}/styles/h5p.css${ver}`;
+    const mainBundle = `${playerBase}/main.bundle.js${ver}`;
     loadCssOnce(frameCss);
     await loadScriptOnce(mainBundle);
     let tries = 0;
@@ -40,7 +41,8 @@ export async function ensureH5PGlobals({ playerBase, retryCount = 40, retryInter
     if (!window.H5PStandalone && !window.H5P) {
       throw new Error('H5P globals not available');
     }
-    return { frameCss, frameBundle: `${playerBase}/frame.bundle.js` };
+    const frameBundle = `${playerBase}/frame.bundle.js${ver}`;
+    return { frameCss, frameBundle };
   })();
   return h5pGlobalPromise;
 }

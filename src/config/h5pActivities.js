@@ -4,7 +4,7 @@ export const H5P_ACTIVITIES = [
     slug: 'koha',
     title: 'Estate Planning Awareness – Conventional & Islamic (Malaysia)',
     summary: 'Interactive book on estate planning awareness for Malaysia, covering both conventional and Islamic perspectives.',
-    embedType: 'div',
+    embedType: 'iframe',
     debug: true
   },
   {

@@ -232,42 +232,19 @@ export default function App() {
 
        
 
-        {H5P_ACTIVITIES.map(activity => {
-          // One ref per activity for fullscreen
-          const containerRef = React.createRef();
-          const handleFullscreen = () => {
-            const el = containerRef.current;
-            if (!el) return;
-            if (el.requestFullscreen) {
-              el.requestFullscreen();
-            } else if (el.webkitRequestFullscreen) {
-              el.webkitRequestFullscreen();
-            } else if (el.mozRequestFullScreen) {
-              el.mozRequestFullScreen();
-            } else if (el.msRequestFullscreen) {
-              el.msRequestFullscreen();
-            }
-          };
-          return (
-            <section key={activity.slug} id={activity.slug} className="h5p-wrapper full-bleed" aria-labelledby={`${activity.slug}-heading`}>
-              <div className="h5p-header-row" style={{display:'flex',alignItems:'center',justifyContent:'space-between',gap:'1rem'}}>
-                <div>
-                  <h2 id={`${activity.slug}-heading`}>{activity.title}</h2>
-                  <p className="activity-summary">{activity.summary}</p>
-                </div>
-                <button type="button" className="fullscreen-btn" onClick={handleFullscreen} aria-label="Fullscreen H5P activity">
-                  ⛶ Fullscreen
-                </button>
-              </div>
-              <H5PPlayer
-                h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`}
-                embedType={activity.embedType || 'iframe'}
-                debug={activity.debug || false}
-                containerRef={containerRef}
-              />
-            </section>
-          );
-        })}
+        {H5P_ACTIVITIES.map(activity => (
+          <section key={activity.slug} id={activity.slug} className="h5p-wrapper full-bleed" aria-labelledby={`${activity.slug}-heading`}>
+            <div className="h5p-header-row">
+              <h2 id={`${activity.slug}-heading`}>{activity.title}</h2>
+              <p className="activity-summary">{activity.summary}</p>
+            </div>
+            <H5PPlayer
+              h5pPath={`${H5P_CONTENT_BASE}/${activity.slug}`}
+              embedType={activity.embedType || 'iframe'}
+              debug={activity.debug || false}
+            />
+          </section>
+        ))}
 
  
 
